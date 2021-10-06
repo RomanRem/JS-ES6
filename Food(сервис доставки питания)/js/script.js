@@ -44,10 +44,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function getTimeRemaining(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date()),
-            days = Math.floor( (t/(1000*60*60*24)) ),
-            seconds = Math.floor( (t/1000) % 60 ),
-            minutes = Math.floor( (t/1000/60) % 60 ),
-            hours = Math.floor( (t/(1000*60*60) % 24) );
+            days = Math.floor((t / (1000 * 60 * 60 * 24))),
+            seconds = Math.floor((t / 1000) % 60),
+            minutes = Math.floor((t / 1000 / 60) % 60),
+            hours = Math.floor((t / (1000 * 60 * 60) % 24));
 
         return {
             'total': t,
@@ -58,10 +58,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
         };
     }
-    function getZero(num){
-        if (num >= 0 && num < 10){
+
+    function getZero(num) {
+        if (num >= 0 && num < 10) {
             return '0' + num;
-        }else {
+        } else {
             return num;
         }
     }
@@ -74,6 +75,7 @@ window.addEventListener('DOMContentLoaded', function () {
             seconds = timer.querySelector('#seconds'),
             timeInterval = setInterval(updateClock, 1000);
         updateClock();
+
         function updateClock() {
             const t = getTimeRemaining(endtime);
 
@@ -92,4 +94,37 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     setClock('.timer', deadLine);
+
+    // Modal
+    const modalTrigger = document.querySelectorAll('[data-modal]'),
+        modal = document.querySelector('.modal'),
+        modalCloseBtn = document.querySelector('[data-close]');
+
+        modalTrigger.forEach(btn =>{
+            btn.addEventListener('click', () => {
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+
+
+        });
+
+    });
+    function closeModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    modalCloseBtn.addEventListener('click', closeModal );
+
+    modal.addEventListener('click', (e) =>{
+        if(e.target === modal) {
+            closeModal()
+        }
+    });
+    document.addEventListener('keydown', (e)=>{
+       if (e.code === 'Escape' && modal.classList.contains('show')){
+           closeModal()
+       }
+    });
 });
