@@ -1,105 +1,41 @@
 'use strict';
+let calc = new Calculator();
+    function Calculator ()  {
+    let textArea = document.getElementById('status');
+    let calcForm = document.getElementById('calcForm');
 
-let input = document.getElementById('status'),
-    number = document.querySelectorAll('.number'),
-    operator = document.querySelectorAll('.operator'),
-    result = document.getElementById('result'),
-    clear = document.getElementById('clear'),
-    resultDisplayed = false;
-
-
-for (let i = 0; i < number.length; i++) {
-    number[i].addEventListener("click", (e) => {
+        const btnsArray = ['0', '1', '2', '3', '4',
+            '5', '6', '7', '8', '9',
+            '+', '-', '*', '/', '=', 'c'];
 
 
-        let currentString = input.innerHTML;
-        let lastChar = currentString[currentString.length - 1];
+        btnsArray.forEach(function (sign) {
+            let signElement = document.createElement('div');
+            signElement.className = 'number';
+            signElement.innerHTML = sign;
+            calcForm.appendChild(signElement);
+        });
 
 
-        if (resultDisplayed === false) {
-            input.innerHTML += e.target.innerHTML;
-        } else if (resultDisplayed === true && lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
-
-            resultDisplayed = false;
-            input.innerHTML += e.target.innerHTML;
-        } else {
-
-            resultDisplayed = false;
-            input.innerHTML = "";
-            input.innerHTML += e.target.innerHTML;
-        }
-
+    document.querySelectorAll('#wrap .number').forEach(function (button) {
+        button.addEventListener('click', onButtonClick);
     });
-}
 
-for (let i = 0; i < operator.length; i++) {
-    operator[i].addEventListener("click", (e)=> {
-
-
-        let currentString = input.innerHTML;
-        let lastChar = currentString[currentString.length - 1];
-
-
-        if (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/") {
-            let newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
-            input.innerHTML = newString;
-        } else if (currentString.length == 0) {
-
-            console.log("enter a number first");
+    function onButtonClick(e) {
+        if (e.target.innerHTML === 'c') {
+            textArea.innerHTML = '0';
+        } else if (e.target.innerHTML === '=') {
+            textArea.innerHTML = eval(textArea.innerHTML);
+        } else if (textArea.innerHTML === '0') {
+            textArea.innerHTML = e.target.innerHTML;
         } else {
-
-            input.innerHTML += e.target.innerHTML;
+            textArea.innerHTML += e.target.innerHTML;
         }
-
-    });
-}
-
-
-result.addEventListener("click", () => {
-
-
-    let inputString = input.innerHTML;
-
-
-    let numbers = inputString.split(/\+|\-|\*|\//g);
-
-    let operators = inputString.replace(/[0-9]|\./g, "").split("");
-
-    let divide = operators.indexOf("/");
-    while (divide != -1) {
-        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
-        operators.splice(divide, 1);
-        divide = operators.indexOf("/");
     }
-
-    let multiply = operators.indexOf("*");
-    while (multiply != -1) {
-        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
-        operators.splice(multiply, 1);
-        multiply = operators.indexOf("*");
-    }
-
-    let subtract = operators.indexOf("-");
-    while (subtract != -1) {
-        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
-        operators.splice(subtract, 1);
-        subtract = operators.indexOf("-");
-    }
-
-    let add = operators.indexOf("+");
-    while (add != -1) {
-
-        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
-        operators.splice(add, 1);
-        add = operators.indexOf("+");
-    }
-
-    input.innerHTML = numbers[0];
-
-    resultDisplayed = true;
-});
+};
 
 
-clear.addEventListener("click", () => {
-    input.innerHTML = "";
-})
+
+
+
+
