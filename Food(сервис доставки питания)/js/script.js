@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     //Timer
-    const deadLine = '2021-10-10';
+    const deadLine = '2021-12-10';
 
     function getTimeRemaining(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date()),
