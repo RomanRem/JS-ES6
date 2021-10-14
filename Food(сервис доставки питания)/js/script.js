@@ -165,7 +165,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
         render() {
             const el = document.createElement('div');
-            this.classes.forEach(className => el.classList.add(className)); //Rest 2
+            if(this.classes.length === 0){                      //добавление класса по умолчанию в случае его отсутствия
+                this.el = 'menu__item';
+                el.classList.add(this.el);
+            }else {
+                this.classes.forEach(className => el.classList.add(className)); //Rest 2
+            }
+
             el.innerHTML = ` 
                 <img src=${this.src} alt=${this.alt}>
                 <h3 class="menu__item-subtitle">${this.title}</h3>
@@ -187,8 +193,8 @@ window.addEventListener('DOMContentLoaded', function () {
             'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
             10,
             '.menu .container',
-            'menu__item',
-            'big'
+            /*'menu__item', //rest 3
+            'big'*/
         ).render(); //одноразовый вызов объекта
 
         new MenuCard(
@@ -197,8 +203,8 @@ window.addEventListener('DOMContentLoaded', function () {
             'Меню “Премиум”',
             'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
             9,
-            '.menu .container',
-            'menu__item'
+            '.menu .container'
+           /* 'menu__item'*/
         ).render(); //одноразовый вызов объекта
 
         new MenuCard(
@@ -207,8 +213,8 @@ window.addEventListener('DOMContentLoaded', function () {
             'Меню "Постное"',
             'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
             12,
-            '.menu .container',
-            'menu__item'
+            '.menu .container'
+            /*'menu__item'*/
         ).render(); //одноразовый вызов объекта
 
 
