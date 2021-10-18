@@ -23,3 +23,4 @@ inputRub.addEventListener('input',()=>{
 
 
 });
+//практика работы с json, пока без использования сервера и на старом методе XMLHttpRequest()
