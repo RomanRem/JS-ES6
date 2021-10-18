@@ -89,7 +89,7 @@ const personalMovieDB = {
 
 
 /* 
-1) Перенес все функции в методамы объекта personalMovieDB
+1) Перенес все функции в методы объекта personalMovieDB
 
 2) Создан метод toggleVisibleMyDB, который при вызове будет проверять свойство privat. Если оно false - он
 переключает его в true, если true - переключает в false. Протестировать вместе с showMyDB.
