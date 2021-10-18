@@ -12,13 +12,13 @@ console.log(names); */
 
 //.map - возвращает массив с измененными значениями внутри
 
-const names = ['IvAn','ROman','ElEna','Anastasia'];
-const result = names.map(item=> item.toLowerCase());
+/*const names = ['IvAn','ROman','ElEna','Anastasia'];
+const result = names.map(item=> item.toLowerCase());*/
  //или 
  // const result = names.map(item=> {
  //    return item.toLowerCase()
  //});
-console.log(result);
+/*console.log(result);*/
  //или с мутацией
 let names = ['IvAn','ROman','ElEna','Anastasia'];
 names = names.map(item=> item.toLowerCase());
