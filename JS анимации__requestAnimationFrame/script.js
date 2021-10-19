@@ -1,7 +1,7 @@
 const btn = document.querySelector('.btn'),
       elem = document.querySelector('.box');  
 let pos = 0;
-
+//классический вариант
 // function myAnimation() {
 //     let pos = 0;
 
@@ -17,6 +17,7 @@ let pos = 0;
 //     }
 // }
 
+// применение requestAnimationFrame
 function myAnimation() {
     pos++;
     elem.style.top = pos + "px";
@@ -29,5 +30,5 @@ function myAnimation() {
 
 btn.addEventListener('click', () => requestAnimationFrame(myAnimation));
 
-let id = requestAnimationFrame(myAnimation);
+let id = requestAnimationFrame(myAnimation);  //остановка(отмена) анимации
 cancelAnimationFrame(id);
